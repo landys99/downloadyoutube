@@ -1,5 +1,7 @@
 Download YouTube Videos as MP4
 ===============
+<b><a href="https://github.com/gantt/downloadyoutube/raw/master/script/yt.user.js">Install script</a></b>
+
 <div id="full_description"><b>Important</b>: If you find compatibility issues, check <a href="Debug.md">the bug reporting page</a>.
 The script is also available <a href="https://greasyfork.org/scripts/1317-download-youtube-videos-as-mp4">at greasyfork.org</a>. 
 <br><br><b>What's new</b>: added file sizes, removed 480p/1080p. <a href="Changelog.md">More in the changelog</a>.
