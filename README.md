@@ -1,4 +1,4 @@
-downloadyoutube
+Download YouTube Videos as MP4
 ===============
 <div id="full_description"><b>Important</b>: If you find compatibility issues, check <a href="http://userscripts-mirror.org:8080/topics/120920">the bug reporting page</a>.
 The scripts is also available <a href="https://greasyfork.org/scripts/1317-download-youtube-videos-as-mp4">at greasyfork.org</a>. 
