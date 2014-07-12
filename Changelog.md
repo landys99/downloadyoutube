@@ -2,7 +2,7 @@ Changelog
 ==================
 
 <p>1.7.21:
-<br>- support for YouTube's latest UI experiment</p>
+<br>- support for YouTube's latest UI experiment (thanks, David Book)</p>
 
 <p>1.7.19:
 <br>- bug fix for signature detection</p>
