@@ -1,6 +1,11 @@
 Changelog
 ==================
 
+<p>1.7.21:
+<br>- support for YouTube's latest UI experiment</p>
+
+<p>1.7.19:
+<br>- bug fix for signature detection</p>
 
 <p>1.7.18:
 <br>- Korean translation (thanks, daunmore - <a href="http://userscripts.org/topics/147092">http://userscripts.org/topics/147092</a>)
