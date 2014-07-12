@@ -334,4 +334,3 @@ Changelog
 
 <p>0.5:
 <br>- initial version</p>
-</td>
