@@ -1,6 +1,9 @@
 Changelog
 ==================
 
+<p>1.7.22:
+<br>- bug fix for signature detection (thanks, jfurg26)</p>
+
 <p>1.7.21:
 <br>- support for YouTube's latest UI experiment (thanks, David Book)</p>
 
