@@ -3,8 +3,8 @@
 // @description Adds a button that lets you download YouTube videos.
 // @homepageURL https://github.com/gantt/downloadyoutube
 // @author Gantt
-// @version 1.7.21
-// @date 2014-07-12
+// @version 1.7.22
+// @date 2014-07-15
 // @namespace http://googlesystem.blogspot.com
 // @include http://www.youtube.com/*
 // @include https://www.youtube.com/*
@@ -34,8 +34,8 @@
   // all=display all versions, max=only highest quality version, none=no version  
   // the default settings show all MP4 videos, the highest quality FLV and no WebM
   var SHOW_DASH_FORMATS=false;
-  var BUTTON_TEXT={'ar':'ØªÙ†Ø²ÙŠÙ„','cs':'StÃ¡hnout','de':'Herunterladen','en':'Download','es':'Descargar','fr':'TÃ©lÃ©charger','hi':'à¤¡à¤¾à¤‰à¤¨à¤²à¥‹à¤¡','hu':'LetÃ¶ltÃ©s','id':'Unduh','it':'Scarica','ja':'ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰','ko':'ë‚´ë ¤ë°›ê¸°','pl':'Pobierz','pt':'Baixar','ro':'DescÄƒrcaÈ›i','ru':'Ð¡ÐºÐ°Ñ‡Ð°Ñ‚ÑŒ','tr':'Ä°ndir','zh':'ä¸‹è½½'};
-  var BUTTON_TOOLTIP={'ar':'ØªÙ†Ø²ÙŠÙ„ Ù‡Ø°Ø§ Ø§Ù„ÙÙŠØ¯ÙŠÙˆ','cs':'StÃ¡hnout toto video','de':'Dieses Video herunterladen','en':'Download this video','es':'Descargar este vÃ­deo','fr':'TÃ©lÃ©charger cette vidÃ©o','hi':'à¤µà¥€à¤¡à¤¿à¤¯à¥‹ à¤¡à¤¾à¤‰à¤¨à¤²à¥‹à¤¡ à¤•à¤°à¥‡à¤‚','hu':'VideÃ³ letÃ¶ltÃ©se','id':'Unduh video ini','it':'Scarica questo video','ja':'ã“ã®ãƒ“ãƒ‡ã‚ªã‚’ãƒ€ã‚¦ãƒ³ãƒ­ãƒ¼ãƒ‰ã™ã‚‹','ko':'ì´ ë¹„ë””ì˜¤ë¥¼ ë‚´ë ¤ë°›ê¸°','pl':'Pobierz plik wideo','pt':'Baixar este vÃ­deo','ro':'DescÄƒrcaÈ›i acest videoclip','ru':'Ð¡ÐºÐ°Ñ‡Ð°Ñ‚ÑŒ ÑÑ‚Ð¾ Ð²Ð¸Ð´ÐµÐ¾','tr': 'Bu videoyu indir','zh':'ä¸‹è½½æ­¤è§†é¢‘'};
+  var BUTTON_TEXT={'ar':'تنزيل','cs':'Stáhnout','de':'Herunterladen','en':'Download','es':'Descargar','fr':'Télécharger','hi':'डाउनलोड','hu':'Letöltés','id':'Unduh','it':'Scarica','ja':'ダウンロード','ko':'내려받기','pl':'Pobierz','pt':'Baixar','ro':'Descărcați','ru':'Скачать','tr':'İndir','zh':'下载'};
+  var BUTTON_TOOLTIP={'ar':'تنزيل هذا الفيديو','cs':'Stáhnout toto video','de':'Dieses Video herunterladen','en':'Download this video','es':'Descargar este vídeo','fr':'Télécharger cette vidéo','hi':'वीडियो डाउनलोड करें','hu':'Videó letöltése','id':'Unduh video ini','it':'Scarica questo video','ja':'このビデオをダウンロードする','ko':'이 비디오를 내려받기','pl':'Pobierz plik wideo','pt':'Baixar este vídeo','ro':'Descărcați acest videoclip','ru':'Скачать это видео','tr': 'Bu videoyu indir','zh':'下载此视频'};
   var DECODE_RULE={};
   var RANDOM=7489235179; // Math.floor(Math.random()*1234567890);
   var CONTAINER_ID='download-youtube-video'+RANDOM;
@@ -599,7 +599,17 @@ function run() {
     var functionCode = findMatch(sourceCode, regCode);
     debug('DYVAM - Info: functioncode ' + functionCode);            
     if (functionCode == null) return setPref(STORAGE_CODE, 'error');
+    
+    var regReverseFunction = new RegExp('(\\w*)\\s*:\\s*function\\s*\\(\\s*\\w*\\s*\\)\\s*{\\s*return\\s*\\w*\\.reverse\\s*\\(\\s*\\)\\s*}');
+    var reverseFunctionName = findMatch(sourceCode, regReverseFunction);
+    debug('DYVAM - Info: reversefunction ' + reverseFunctionName);
+    
+    var regSliceFunction = new RegExp('(\\w*)\\s*:\\s*function\\s*\\(\\s*\\w*\\s*,\\s*\\w*\\s*\\)\\s*{\\s*return\\s*\\w*\\.slice\\(.+\\)\\s*}');
+    var sliceFunctionName = findMatch(sourceCode, regSliceFunction);
+    debug('DYVAM - Info: slicefunction ' + sliceFunctionName);
+    
     var regSlice = new RegExp('slice\\s*\\(\\s*(.+)\\s*\\)');
+    var regSliceVar = sliceFunctionName && new RegExp(sliceFunctionName+'\\s*\\(\\s*.+([0-9]+)\\s*\\)');
     var regSwap = new RegExp('\\w+\\s*\\(\\s*\\w+\\s*,\\s*([0-9]+)\\s*\\)');
     var regInline = new RegExp('\\w+\\[0\\]\\s*=\\s*\\w+\\[([0-9]+)\\s*%\\s*\\w+\\.length\\]');
     var functionCodePieces=functionCode.split(';');
@@ -625,6 +635,15 @@ function run() {
             decodeArray.push(inline);
             i+=2;
           } else return setPref(STORAGE_CODE, 'error');
+      } else if (sliceFunctionName && functionCodePieces[i].indexOf('.'+sliceFunctionName) >= 0) {
+        var slice=findMatch(functionCodePieces[i], regSliceVar);
+        slice=parseInt(slice, 10);
+        if (isInteger(slice)){ 
+          decodeArray.push(-slice);
+          signatureLength+=slice;
+        } else return setPref(STORAGE_CODE, 'error');
+      } else if (reverseFunctionName && functionCodePieces[i].indexOf('.'+reverseFunctionName) >= 0) {
+        decodeArray.push(0);
       } else if (functionCodePieces[i].indexOf(',') >= 0) {
         var swap=findMatch(functionCodePieces[i], regSwap);      
         swap=parseInt(swap, 10);
@@ -665,6 +684,8 @@ function run() {
   function fetchSignatureScript(scriptURL) {
     var storageURL=getPref(STORAGE_URL);
     var storageCode=getPref(STORAGE_CODE);
+    // hack for wrong code, remove this
+    if (storageCode=='15,44,66,24,3,51,2,50') storageCode=null;
     if (storageCode && isValidSignatureCode(storageCode) && storageURL &&
         scriptURL.replace(/^https?/i,'')==storageURL.replace(/^https?/i,'')) return;
     try {
