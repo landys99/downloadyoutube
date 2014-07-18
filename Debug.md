@@ -9,14 +9,14 @@ Debug
 
 <p>2. open Firefox's web console - Ctrl+Shift+K or use these instructions: <a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Opening_the_Web_Console">https://developer.mozilla.org/en-US/docs/Tools/...</a></p>
 
-<p>3. copy the following code and paste it to the huge box at the bottom of the window using Ctrl+V (Step 3 in the screenshot below):
+<p>3. copy the following code and paste it to the long box at the bottom of the window using Ctrl+V (Step 3 in the screenshot below):
 <br><code>
 <br>document.getElementById('download-youtube-video-debug-info').innerHTML+"***"+document.cookie.match(/VISITOR_INFO1_LIVE=([\w\-]*)/g)
 <br></code></p>
 
 <p>4. type dyvam in the "Filter" box next to the "clear" button (Step 4 in the screenshot)</p>
 
-<p>5. right-click the long text that starts with "DYVAM - Info" from the console and select "copy".</p>
+<p>5. right-click the long text that starts with "DYVAM - Info" from the console, click "select all", right-click again and pick "copy".</p>
 
 <p>6. paste the result in a message to <a href="mailto:deadline.support@gmail.com">deadline.support@gmail.com</a> with other information about your issues.</p>
 
