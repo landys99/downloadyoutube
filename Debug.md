@@ -9,7 +9,7 @@ Debug
 
 <p>2. open Firefox's web console - Ctrl+Shift+K for Windows/Linux, Command-Option-K for Mac, or use these instructions: <a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Opening_the_Web_Console">https://developer.mozilla.org/en-US/docs/Tools/...</a></p>
 
-<p>3. copy the following code and paste it to the long box at the bottom of the window using Ctrl+V (Step 3 in the screenshot below):
+<p>3. copy the following code and paste it to the long input box at the bottom of the window using Ctrl+V (Step 3 in the screenshot below):
 <br><code>
 <br>document.getElementById('download-youtube-video-debug-info').innerHTML+"***"+document.cookie.match(/VISITOR_INFO1_LIVE=([\w\-]*)/g)
 <br></code></p>
