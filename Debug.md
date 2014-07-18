@@ -7,7 +7,7 @@ Debug
 
 <p>1. open a YouTube video page where you see the bugs. Example: <a href="http://www.youtube.com/watch?v=PK8dsAeMmPk">http://www.youtube.com/watch?v=PK8dsAeMmPk</a></p>
 
-<p>2. open Firefox's web console - Ctrl+Shift+K or use these instructions: <a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Opening_the_Web_Console">https://developer.mozilla.org/en-US/docs/Tools/...</a></p>
+<p>2. open Firefox's web console - Ctrl+Shift+K for Windows/Linux, Command-Option-K for Mac, or use these instructions: <a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Opening_the_Web_Console">https://developer.mozilla.org/en-US/docs/Tools/...</a></p>
 
 <p>3. copy the following code and paste it to the long box at the bottom of the window using Ctrl+V (Step 3 in the screenshot below):
 <br><code>
